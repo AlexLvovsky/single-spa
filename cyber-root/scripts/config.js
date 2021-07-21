@@ -30,9 +30,11 @@ const spaDefinition = [
       }
 
     </script>`);
-    const html = document.head.innerHTML;
+    const html = document.getElementsByTagName('head')[0].innerHTML;
+
     function injectHtml(html, mark, injectContent) {
-        document.head.innerHTML = html.replace(new RegExp(`<!--\\s*${mark}\\s*-->`), injectContent);
+        document.getElementsByTagName('head')[0].innerHTML = html.replace(new RegExp(`<!--\\s*${mark}\\s*-->`), injectContent);
     }
+
     injectHtml(html, 'single-spa-scripts', script);
 })()
