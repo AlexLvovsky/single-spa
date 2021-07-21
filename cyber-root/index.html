@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cybereason test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="importmap-type" content="systemjs-importmap">
+
+    <!-- single-spa-scripts -->
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js"
+          as="script" crossorigin="anonymous"/>
+    <script src='https://unpkg.com/core-js-bundle@3.1.4/minified.js'></script>
+    <script src="https://unpkg.com/zone.js"></script>
+    <script src="https://unpkg.com/import-map-overrides@1.6.0/dist/import-map-overrides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/amd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-exports.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script>
+    <script src="/scripts/list.js"></script>
+    <script src="/scripts/config.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .row {
+            display: flex;
+            height: 50%;
+        }
+
+        /* Create two equal columns that sits next to each other */
+        .column {
+            flex: 50%;
+            padding: 10px;
+            overflow: auto;
+            margin: 5px;
+            background-color: ghostwhite;
+        }
+
+        .column > div {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <div id="grid" class="column"></div>
+    <div id="text" class="column"></div>
+</div>
+<div class="row">
+    <div id="image" class="column"></div>
+    <div id="list" class="column"></div>
+</div>
+<script>
+    (function () {
+    System.import('single-spa')
+        .then((res) => {
+            var singleSpa = res;
+            singleSpa.addErrorHandler(err => {
+                alert("The application is not load yet.");
+            })
+
+            function registerApplications(items) {
+                if (items) {
+                    for (let i = 0; i < items.length; i++) {
+                        let menuItem = items[i];
+
+                        singleSpa.registerApplication(menuItem.id,
+                            () => System.import(menuItem.id),
+                            (_) => {
+                                return true;
+                            },
+                            {domElementGetter: () => document.getElementById(menuItem.id)}
+                        );
+                    }
+                }
+            }
+
+            registerApplications(spaDefinition);
+            singleSpa.start();
+        })
+    })()
+</script>
+</body>
+</html>
