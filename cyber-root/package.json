@@ -2,7 +2,11 @@
   "name": "cyber-root",
   "main": "index.js",
   "scripts": {
-    "start": "serve -s -l 4200"
+    "start-root": "npm install && serve -s -l 4200",
+    "start-grid": "cd ..\\cyber-grid && npm install && npm start",
+    "start-text": "cd ..\\cyber-text && npm install && npm start",
+    "start-image": "cd ..\\cyber-image && npm install && npm start",
+    "start-list": "cd ..\\cyber-list && npm install && npm start"
   },
   "devDependencies": {
     "serve": "^12.0.0"
