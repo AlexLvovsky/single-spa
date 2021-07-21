@@ -13,19 +13,21 @@ export class GridDataService {
   constructor(private http: HttpClient) {
   }
 
-  getData(): Observable<User[]> {
+  getUsers(): Observable<User[]> {
     return this.http.get<any[]>(this.dataUrl)
       .pipe(
         map(items => {
-          return items.map(item => {
-            const user: User = {
-              id: item.id,
-              name: item.name,
-              userName: item.username,
-            };
-            return user;
-          });
-
+          if (items) {
+            return items.map(item => {
+              const user: User = {
+                id: item.id,
+                name: item.name,
+                userName: item.username,
+              };
+              return user;
+            });
+          }
+          return [];
         })
       );
   }
