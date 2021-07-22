@@ -28,6 +28,7 @@ As sub-application run: `npm run start-list` (port: 4204)
 
 As standalone application run: `npm run start-list-standalone`
 
+
 **Main**
 
 Run: `npm run start-root`
@@ -38,11 +39,11 @@ Open http://localhost:4200/
 
 
 > Angular CLI: 12.1.2
-
+> 
 > Node: 14.16.0
-
+> 
 > Package Manager: npm 6.14.11
-
+> 
 > single-spa: 5.9.3
-
+> 
 > single-spa-angular: 5.0.1

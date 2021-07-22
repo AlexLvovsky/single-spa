@@ -2,11 +2,16 @@
   "name": "single-spa",
   "version": "1.0.0",
   "scripts": {
-    "start-root": "cd cyber-root && npm install && serve -s -l 4200",
-    "start-grid": "cd cyber-grid && npm install && npm start",
-    "start-text": "cd cyber-text && npm install && npm start",
-    "start-image": "cd cyber-image && npm install && npm start",
-    "start-list": "cd cyber-list && npm install && npm start"
+    "start-root": "cd cyber-root && serve -s -l 4200",
+    "start-grid": "cd cyber-grid && npm start",
+    "start-grid-standalone": "cd cyber-grid && npm run start-standalone",
+    "start-text": "cd cyber-text && npm start",
+    "start-text-standalone": "cd cyber-text && npm run start-standalone",
+    "start-image": "cd cyber-image && npm start",
+    "start-image-standalone": "cd cyber-image && npm run start-standalone",
+    "start-list": "cd cyber-list && npm start",
+    "start-list-standalone": "cd cyber-list && npm run start-standalone",
+    "install-deps": "npm install & (cd cyber-root && npm install) & (cd ..\\cyber-grid && npm install) & (cd ..\\cyber-text && npm install) & (cd ..\\cyber-image && npm install) & (cd ..\\cyber-list && npm install)"
   },
   "devDependencies": {
     "serve": "^12.0.0"
